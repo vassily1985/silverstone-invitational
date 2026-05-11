@@ -119,6 +119,25 @@
   }
   .nav-cta:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
   .nav-cta .arrow { width: 14px; height: 9px; }
+  .nav-cta { white-space: nowrap; }
+ 
+  /* ===== mobile nav ===== */
+  @media (max-width: 640px) {
+    .nav-inner { height: 60px; }
+    .brand img { height: 22px; }
+    .brand .x, .brand .silver { font-size: 15px; }
+    .brand { gap: 8px; }
+    .nav-cta {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      padding: 9px 12px;
+      gap: 8px;
+    }
+    .nav-cta .arrow { width: 12px; height: 8px; }
+  }
+  @media (max-width: 420px) {
+    .brand .silver { display: none; }
+  }
  
   /* ============ HERO ============ */
   .hero {
@@ -808,4 +827,3 @@
  
 </body>
 </html>
- 
