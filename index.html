@@ -802,7 +802,7 @@
  
     <div class="actions">
       <a href="https://forms.clickup.com/90151333967/f/2kyq0c2f-11695/WBFG7WZDO3Z0CV6QEX" target="_blank" rel="noopener" class="cta">
-        Submit for Consideration
+        Apply to Join
         <span class="arrow"></span>
       </a>
     </div>
@@ -824,24 +824,25 @@
   </div>
 </section>
  
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="container foot">
-    <div class="foot-left">
-      <img src="rf-logo-white.png" alt="Rare Founders" />
-      <span>/ Silverstone · 2026</span>
-    </div>
-    <a href="https://www.rarefounders.com/" target="_blank" rel="noopener">rarefounders.com →</a>
-  </div>
-</footer>
+<!-- footer removed -->
  
 <script>
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const id = a.getAttribute('href');
-      if (id.length > 1) {
-        const el = document.querySelector(id);
-        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  // Anchor scroll — when standalone, scroll the page; when embedded in an
+  // iframe (Squarespace), tell the parent where to scroll instead (the
+  // iframe itself has no internal scroll because its height matches content).
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id.length <= 1) return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      var rect = el.getBoundingClientRect();
+      var targetY = rect.top + (window.scrollY || window.pageYOffset || 0);
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'silverstone-scroll', y: targetY }, '*');
+      } else {
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
       }
     });
   });
