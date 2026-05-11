@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Rare Founders × Silverstone — Private BTCC Weekend</title>
+<meta name="description" content="An invite-only BTCC weekend at Silverstone. 30 guests. Behind-the-scenes access you can't buy." />
+
+<meta property="og:title" content="Rare Founders × Silverstone — Private BTCC Weekend" />
+<meta property="og:description" content="30 guests. Invite only. Access you can't buy." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Mulish:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --bg:        #000000;
+    --bg-2:      #0a0a0a;
+    --ink:       #ffffff;
+    --ink-soft:  #cdcdcd;
+    --ink-mute:  #8a8a8a;
+    --line:      rgba(255,255,255,0.10);
+    --line-2:    rgba(255,255,255,0.22);
+    --pink:      #FF1493;          /* neon — used sparingly */
+    --pink-2:    #ff4ab1;
+    --max:       1280px;
+    --pad-x:     clamp(20px, 4vw, 64px);
+    --ease:      cubic-bezier(.22,.61,.36,1);
+  }
+
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { background: var(--bg); -webkit-font-smoothing: antialiased; }
+  body {
+    color: var(--ink);
+    background: var(--bg);
+    font-family: 'Mulish', 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    font-size: 17px;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--pink); color: #fff; }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  h1, h2, h3 {
+    font-family: 'Archivo Black', 'Impact', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    line-height: 0.96;
+    margin: 0;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+  }
+
+  /* helpers */
+  .eyebrow {
+    font-family: 'Mulish', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 700;
+    display: inline-flex; align-items: center; gap: 12px;
+    margin: 0 0 22px;
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px; background: var(--pink); border-radius: 50%;
+    box-shadow: 0 0 14px var(--pink);
+  }
+
+  .ix {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    color: var(--pink);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+  }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(0,0,0,0.78);
+    backdrop-filter: saturate(140%) blur(12px);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 76px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+  .brand img { height: 26px; width: auto; opacity: 0.95; }
+  .brand .x {
+    font-family: 'Archivo Black', sans-serif; font-size: 17px;
+    color: var(--pink);
+  }
+  .brand .silver { font-family: 'Archivo Black', sans-serif; font-size: 17px; }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink);
+    padding: 12px 18px;
+    border: 1px solid var(--line-2);
+    transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+  }
+  .nav-cta:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
+  .nav-cta .arrow { width: 14px; height: 9px; }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+    padding: 120px 0 64px;
+    background: var(--bg);
+  }
+  .hero-photo {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.50) 55%, rgba(0,0,0,0.95) 100%),
+      url('images/btcc-02.jpg');
+    background-size: cover;
+    background-position: center 35%;
+    filter: saturate(0.50) contrast(1.05);
+    z-index: 0;
+  }
+  /* fine grain */
+  .hero::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+  .hero .container { position: relative; z-index: 2; width: 100%; }
+
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink);
+    background: rgba(0,0,0,0.45);
+    border: 1px solid var(--line-2);
+    padding: 9px 16px;
+    margin: 0 0 36px;
+  }
+  .hero-pill .dot {
+    width: 6px; height: 6px; background: var(--pink); border-radius: 50%;
+    box-shadow: 0 0 14px var(--pink);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.45; }
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 9.4vw, 144px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    max-width: 13ch;
+    margin: 0 0 32px;
+  }
+  .hero h1 .slash { color: var(--pink); padding: 0 0.05em; }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.78);
+    font-size: clamp(17px, 1.3vw, 19px);
+    max-width: 56ch;
+    line-height: 1.55;
+    font-weight: 400;
+    margin: 0 0 44px;
+  }
+
+  /* primary CTA — premium, restrained */
+  .cta {
+    display: inline-flex; align-items: center; gap: 16px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700;
+    padding: 20px 28px;
+    background: var(--ink); color: #000;
+    transition: background .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+  }
+  .cta:hover { background: var(--pink); color: #fff; transform: translateY(-1px); }
+  .cta .arrow {
+    width: 22px; height: 1px; background: currentColor; position: relative; display: inline-block;
+    transition: width .25s var(--ease);
+  }
+  .cta .arrow::after {
+    content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px;
+    border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+  .cta:hover .arrow { width: 32px; }
+  .cta-ghost {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--line-2);
+  }
+  .cta-ghost:hover { border-color: var(--pink); color: var(--pink); background: transparent; transform: translateY(-1px); }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+  .hero-meta {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-meta dt {
+    font-family: 'Mulish', sans-serif;
+    font-size: 10px; letter-spacing: 0.30em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute);
+    margin: 0 0 8px;
+  }
+  .hero-meta dd {
+    margin: 0; color: var(--ink);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(18px, 1.6vw, 24px);
+    text-transform: uppercase;
+  }
+  @media (max-width: 700px) {
+    .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }
+  }
+
+  /* ============ SECTION SCAFFOLD ============ */
+  section { padding: clamp(88px, 10vw, 140px) 0; position: relative; }
+  .section-head {
+    margin: 0 0 64px;
+    max-width: 64ch;
+  }
+  .section-head h2 {
+    font-size: clamp(40px, 6.4vw, 96px);
+    line-height: 0.96;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .section-head h2 .slash { color: var(--pink); }
+
+  /* ============ WHAT IT IS ============ */
+  .what {
+    border-top: 1px solid var(--line);
+  }
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .what-copy h2 {
+    font-size: clamp(34px, 5.4vw, 76px);
+    margin: 18px 0 28px;
+  }
+  .what-copy h2 .slash { color: var(--pink); }
+  .what-copy p {
+    color: var(--ink-soft);
+    font-size: clamp(17px, 1.2vw, 19px);
+    line-height: 1.6;
+    margin: 0 0 16px;
+    max-width: 48ch;
+  }
+  .what-copy p strong { color: var(--ink); font-weight: 700; }
+  .what-image {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+  }
+  .what-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.55) contrast(1.05) brightness(0.92);
+  }
+  .what-image::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 65%, rgba(0,0,0,0.55));
+  }
+  .what-image .cap {
+    position: absolute; left: 22px; bottom: 20px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink);
+    z-index: 1;
+  }
+  @media (max-width: 920px) {
+    .what-grid { grid-template-columns: 1fr; gap: 40px; }
+    .what-image { aspect-ratio: 4 / 3; }
+  }
+
+  /* ============ INCLUDED — editorial rows ============ */
+  .included { border-top: 1px solid var(--line); }
+  .inc-list {
+    border-top: 1px solid var(--line);
+  }
+  .inc-row {
+    display: grid;
+    grid-template-columns: 90px 200px 1fr;
+    gap: 32px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    transition: background .25s var(--ease);
+  }
+  .inc-row:hover { background: rgba(255,255,255,0.02); }
+  .inc-row .ix { font-size: 14px; color: var(--pink); letter-spacing: 0.18em; font-family: 'Mulish', sans-serif; font-weight: 700; }
+  .inc-row .thumb {
+    aspect-ratio: 4 / 3;
+    overflow: hidden; background: #111;
+  }
+  .inc-row .thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.55) contrast(1.05) brightness(0.95);
+    transition: transform .8s var(--ease);
+  }
+  .inc-row:hover .thumb img { transform: scale(1.04); }
+  .inc-row .body { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: baseline; }
+  .inc-row h3 {
+    font-size: clamp(24px, 2.4vw, 36px);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+  }
+  .inc-row p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15.5px; line-height: 1.55;
+  }
+  @media (max-width: 880px) {
+    .inc-row { grid-template-columns: 1fr; gap: 16px; padding: 24px 0; }
+    .inc-row .thumb { aspect-ratio: 16 / 9; max-width: 100%; }
+    .inc-row .body { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ============ STRIP — cinematic image row ============ */
+  .strip {
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .strip-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .strip-row .pane {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #000;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .strip-row .pane:last-child { border-right: 0; }
+  .strip-row img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.50) contrast(1.05) brightness(0.85);
+    transition: transform .9s var(--ease), filter .5s var(--ease);
+  }
+  .strip-row .pane:hover img {
+    transform: scale(1.05); filter: saturate(0.7) contrast(1.05) brightness(1);
+  }
+  .strip-row .lab {
+    position: absolute; left: 22px; bottom: 22px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 10px; letter-spacing: 0.30em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+  }
+  @media (max-width: 800px) {
+    .strip-row { grid-template-columns: 1fr; }
+    .strip-row .pane { aspect-ratio: 16 / 10; border-right: 0; border-bottom: 1px solid var(--line); }
+  }
+
+  /* ============ WHO IT'S FOR ============ */
+  .who { border-top: 1px solid var(--line); }
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 80px;
+    align-items: end;
+  }
+  .who-copy h2 {
+    font-size: clamp(40px, 6vw, 88px);
+    margin: 18px 0 24px;
+  }
+  .who-copy h2 .slash { color: var(--pink); }
+  .who-copy p {
+    color: var(--ink-soft);
+    font-size: clamp(17px, 1.2vw, 19px);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 44ch;
+  }
+  .who-list {
+    list-style: none; padding: 0; margin: 0;
+    border-top: 1px solid var(--line);
+  }
+  .who-list li {
+    display: grid; grid-template-columns: 60px 1fr;
+    gap: 20px; align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .who-list .ix {
+    font-size: 13px; color: var(--pink);
+    letter-spacing: 0.18em;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+  }
+  .who-list .lab {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(20px, 1.8vw, 28px);
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.04;
+  }
+  @media (max-width: 980px) {
+    .who-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ============ WHY ============ */
+  .why { border-top: 1px solid var(--line); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .why-card {
+    border: 1px solid var(--line);
+    padding: 36px 32px 32px;
+    display: flex; flex-direction: column; gap: 18px;
+    background: var(--bg-2);
+    position: relative;
+    overflow: hidden;
+    transition: border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .why-card:hover { border-color: var(--pink); }
+  .why-card .why-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(64px, 8vw, 112px);
+    color: var(--pink);
+    line-height: 0.85;
+    opacity: 0.95;
+    margin-bottom: 4px;
+  }
+  .why-card h3 {
+    font-size: clamp(26px, 2.6vw, 38px);
+    line-height: 1.04;
+    letter-spacing: -0.012em;
+  }
+  .why-card p {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 44ch;
+  }
+  @media (max-width: 880px) {
+    .why-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ APPLY (no embedded form) ============ */
+  .apply {
+    border-top: 1px solid var(--line);
+    padding: clamp(96px, 12vw, 160px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .apply-bg {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(900px 500px at 80% 30%, rgba(255,20,147,0.10), transparent 60%),
+      linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.96) 100%),
+      url('images/btcc-07.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: saturate(0.4) contrast(1.05);
+    z-index: 0;
+  }
+  .apply .container { position: relative; z-index: 1; }
+  .apply h2 {
+    font-size: clamp(56px, 9vw, 144px);
+    line-height: 0.94;
+    margin: 18px 0 24px;
+    max-width: 14ch;
+    letter-spacing: -0.02em;
+  }
+  .apply h2 .slash { color: var(--pink); }
+  .apply p.lead {
+    color: rgba(255,255,255,0.82);
+    font-size: clamp(17px, 1.3vw, 20px);
+    line-height: 1.55;
+    margin: 0 0 44px;
+    max-width: 56ch;
+  }
+  .apply .actions {
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    margin-bottom: 56px;
+  }
+  .mantra {
+    margin-top: 64px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    border-top: 1px solid var(--line); padding-top: 28px;
+  }
+  .mantra .m {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .mantra .m .lbl {
+    font-family: 'Mulish', sans-serif;
+    font-size: 10px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 700;
+  }
+  .mantra .m .txt {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(20px, 2vw, 28px);
+    text-transform: uppercase;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .mantra .m .txt .pink { color: var(--pink); }
+  @media (max-width: 800px) {
+    .mantra { grid-template-columns: 1fr; gap: 14px; }
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: #000;
+    border-top: 1px solid var(--line);
+    padding: 36px 0;
+  }
+  .foot {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    color: var(--ink-mute);
+    font-family: 'Mulish', sans-serif;
+    font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+    font-weight: 700;
+  }
+  .foot img { height: 22px; opacity: 0.95; }
+  .foot a:hover { color: var(--ink); }
+  .foot-left { display: flex; align-items: center; gap: 16px; }
+
+  /* reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="/" aria-label="Rare Founders × Silverstone">
+      <img src="images/rf-logo-white.png" alt="Rare Founders" />
+      <span class="x">/</span>
+      <span class="silver">Silverstone</span>
+    </a>
+    <a href="https://forms.clickup.com/90151333967/p/f/2kyq0c2f-7355/Y5W15NQOEP05SBCLS2/form" target="_blank" rel="noopener" class="nav-cta">
+      Join the Waitlist
+      <svg class="arrow" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+        <path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="container">
+    <span class="hero-pill"><i class="dot"></i>Invite-only · BTCC · Silverstone · 26–27 September 2026</span>
+
+    <h1>Inside<br>British<br>Motorsport<span class="slash">.</span></h1>
+
+    <p class="hero-sub">A private weekend at Silverstone for thirty hand-picked guests. Race-day access, the paddock, the garages, the team principals — and the kind of room you only get into by being asked.</p>
+
+    <div class="hero-actions">
+      <a href="https://forms.clickup.com/90151333967/p/f/2kyq0c2f-7355/Y5W15NQOEP05SBCLS2/form" target="_blank" rel="noopener" class="cta">
+        Register Your Interest
+        <span class="arrow"></span>
+      </a>
+      <a href="#what" class="cta cta-ghost">What's Included</a>
+    </div>
+
+    <dl class="hero-meta">
+      <div><dt>Where</dt><dd>Silverstone</dd></div>
+      <div><dt>When</dt><dd>26–27 Sept '26</dd></div>
+      <div><dt>Guests</dt><dd>Thirty</dd></div>
+      <div><dt>Access</dt><dd>By Invite</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ WHAT IT IS ============ -->
+<section class="what" id="what">
+  <div class="container">
+    <div class="what-grid">
+      <div class="what-copy">
+        <p class="eyebrow"><span class="dot"></span>What it is</p>
+        <h2>A private BTCC weekend<span class="slash">.</span></h2>
+        <p>Hosted by Rare Founders alongside selected race teams, for <strong>thirty family office principals, fund GPs and senior business leaders</strong>.</p>
+        <p>Not a hospitality package. <strong>An invitation</strong> into the rooms typically reserved for sponsors, partners and trusted guests of the championship itself.</p>
+      </div>
+      <figure class="what-image">
+        <img src="images/btcc-03.jpg" alt="Pit lane access — team principals during race weekend" />
+        <span class="cap">Pit lane / Behind the scenes</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S INCLUDED — editorial rows ============ -->
+<section class="included" id="included">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot"></span>What's included</p>
+      <h2>Everything in the day<span class="slash">.</span></h2>
+    </div>
+
+    <div class="inc-list">
+      <article class="inc-row">
+        <span class="ix">/ 01</span>
+        <figure class="thumb"><img src="images/btcc-08.jpg" alt="Cars on track" /></figure>
+        <div class="body">
+          <h3>VIP Race-Day Access</h3>
+          <p>Premium hosting throughout BTCC weekend at Silverstone. Hospitality included.</p>
+        </div>
+      </article>
+
+      <article class="inc-row">
+        <span class="ix">/ 02</span>
+        <figure class="thumb"><img src="images/btcc-01.jpg" alt="Hospitality marquee" /></figure>
+        <div class="body">
+          <h3>The Private Suite</h3>
+          <p>A dedicated Rare Founders environment. Built for considered conversation.</p>
+        </div>
+      </article>
+
+      <article class="inc-row">
+        <span class="ix">/ 03</span>
+        <figure class="thumb"><img src="images/btcc-03.jpg" alt="Pit lane" /></figure>
+        <div class="body">
+          <h3>Paddock &amp; Garage</h3>
+          <p>Behind-the-scenes access into rooms typically closed to the public.</p>
+        </div>
+      </article>
+
+      <article class="inc-row">
+        <span class="ix">/ 04</span>
+        <figure class="thumb"><img src="images/btcc-04.jpg" alt="Team and drivers" /></figure>
+        <div class="body">
+          <h3>Drivers &amp; Team Principals</h3>
+          <p>Time with the people who actually run the championship.</p>
+        </div>
+      </article>
+
+      <article class="inc-row">
+        <span class="ix">/ 05</span>
+        <figure class="thumb"><img src="images/btcc-05.jpg" alt="Trackside broadcast" /></figure>
+        <div class="body">
+          <h3>Sundown Networking</h3>
+          <p>Evening drinks with guests, race teams, sponsors and commercial partners.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRIP — cinematic ============ -->
+<section class="strip" aria-hidden="true">
+  <div class="strip-row">
+    <figure class="pane">
+      <img src="images/btcc-07.jpg" alt="" />
+      <span class="lab">/ The Track</span>
+    </figure>
+    <figure class="pane">
+      <img src="images/btcc-04.jpg" alt="" />
+      <span class="lab">/ The Paddock</span>
+    </figure>
+    <figure class="pane">
+      <img src="images/btcc-06.jpg" alt="" />
+      <span class="lab">/ Silverstone</span>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section class="who" id="who">
+  <div class="container">
+    <div class="who-grid">
+      <div class="who-copy">
+        <p class="eyebrow"><span class="dot"></span>Who it's for</p>
+        <h2>The right<br>thirty<span class="slash">.</span></h2>
+        <p>Selected for fit, relevance and the value brought to the room. Every seat is considered.</p>
+      </div>
+      <ul class="who-list">
+        <li><span class="ix">/ 01</span><span class="lab">Family offices &amp; private wealth principals</span></li>
+        <li><span class="ix">/ 02</span><span class="lab">General Partners at venture &amp; private capital funds</span></li>
+        <li><span class="ix">/ 03</span><span class="lab">Senior executives at FTSE 100 &amp; global businesses</span></li>
+        <li><span class="ix">/ 04</span><span class="lab">High-net-worth individuals &amp; private investors</span></li>
+        <li><span class="ix">/ 05</span><span class="lab">Founders of established &amp; category-defining businesses</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY JOIN ============ -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot"></span>Why join</p>
+      <h2>Most race hospitality<br>can be bought<span class="slash">.</span><br>This cannot.</h2>
+    </div>
+
+    <div class="why-grid">
+      <article class="why-card">
+        <div class="why-num">01</div>
+        <h3>Access you can't buy</h3>
+        <p>Paddock, garage, sponsor hospitality, team principals — relationship-led, not for sale at any price.</p>
+      </article>
+
+      <article class="why-card">
+        <div class="why-num">02</div>
+        <h3>The right thirty</h3>
+        <p>A curated room of family offices, fund GPs and senior executives. Every seat considered.</p>
+      </article>
+
+      <article class="why-card">
+        <div class="why-num">03</div>
+        <h3>Behind the championship</h3>
+        <p>Meet drivers, team principals and commercial partners. See how a championship actually runs.</p>
+      </article>
+
+      <article class="why-card">
+        <div class="why-num">04</div>
+        <h3>Peers at your level</h3>
+        <p>Carefully sized for peer-to-peer conversation — the kind that only happens between people operating at the same level.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLY (link-out CTA, no embedded form) ============ -->
+<section class="apply" id="apply">
+  <div class="apply-bg" aria-hidden="true"></div>
+  <div class="container">
+    <p class="eyebrow"><span class="dot"></span>Register Interest</p>
+    <h2>Thirty places<span class="slash">.</span><br>Invite only.</h2>
+    <p class="lead">Registering interest does not guarantee a place. Guests are selected for fit, relevance and value to the room and our team partners.</p>
+
+    <div class="actions">
+      <a href="https://forms.clickup.com/90151333967/p/f/2kyq0c2f-7355/Y5W15NQOEP05SBCLS2/form" target="_blank" rel="noopener" class="cta">
+        Submit for Consideration
+        <span class="arrow"></span>
+      </a>
+    </div>
+
+    <div class="mantra" aria-hidden="true">
+      <div class="m">
+        <span class="lbl">/ 01</span>
+        <span class="txt">Not <span class="pink">bought</span></span>
+      </div>
+      <div class="m">
+        <span class="lbl">/ 02</span>
+        <span class="txt">Not <span class="pink">public</span></span>
+      </div>
+      <div class="m">
+        <span class="lbl">/ 03</span>
+        <span class="txt">Not <span class="pink">ordinary</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container foot">
+    <div class="foot-left">
+      <img src="images/rf-logo-white.png" alt="Rare Founders" />
+      <span>/ Silverstone · 2026</span>
+    </div>
+    <a href="https://www.rarefounders.com/" target="_blank" rel="noopener">rarefounders.com →</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
