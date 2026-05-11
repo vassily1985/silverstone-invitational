@@ -129,6 +129,12 @@
     padding: 56px 0 64px;
     background: var(--bg);
   }
+  /* When embedded in an iframe, use a fixed hero height so it doesn't
+     create a feedback loop with the parent that's auto-resizing the iframe. */
+  html.is-embedded .hero { min-height: 760px; }
+  @media (max-width: 700px) {
+    html.is-embedded .hero { min-height: 640px; }
+  }
  
   /* centered brand atop the hero image */
   .hero-brand {
@@ -835,31 +841,50 @@
   });
 </script>
  
-<!-- Tell the parent (Squarespace) our true height so the iframe can auto-size
-     and the outer page scroll naturally reaches the footer. -->
+<!-- When loaded inside an iframe (e.g. embedded in Squarespace), tell the
+     parent our true content height so the iframe can auto-size and the
+     outer page scroll naturally reaches the footer. -->
 <script>
   (function () {
     if (window.parent === window) return; // not embedded
-    function sendHeight() {
-      var h = Math.max(
-        document.documentElement.scrollHeight,
-        document.body ? document.body.scrollHeight : 0
+    // Mark <html> so embed-only CSS overrides (e.g. hero height) take effect.
+    document.documentElement.classList.add('is-embedded');
+ 
+    var lastSent = 0;
+    function measure() {
+      // Use body.scrollHeight (more stable than documentElement)
+      return Math.max(
+        document.body ? document.body.scrollHeight : 0,
+        document.documentElement.scrollHeight
       );
+    }
+    function send() {
+      var h = measure();
+      // Cap to a sane value and skip if essentially unchanged (debounce loops).
+      if (h < 200 || h > 20000) return;
+      if (Math.abs(h - lastSent) < 4) return;
+      lastSent = h;
       window.parent.postMessage({ type: 'silverstone-height', height: h }, '*');
     }
-    window.addEventListener('load', sendHeight);
-    window.addEventListener('resize', sendHeight);
-    // Re-send when images finish loading (they change the height)
-    document.querySelectorAll('img').forEach(function (img) {
-      if (!img.complete) img.addEventListener('load', sendHeight);
+    // Fire on load, and at a few delays to catch font/image reflows.
+    window.addEventListener('load', function () {
+      send();
+      setTimeout(send, 250);
+      setTimeout(send, 800);
+      setTimeout(send, 2000);
     });
-    // And watch for any DOM size changes
-    if (window.ResizeObserver) {
-      new ResizeObserver(sendHeight).observe(document.documentElement);
-    }
-    // Initial ping after a small delay (covers fonts/CSS late loads)
-    setTimeout(sendHeight, 400);
-    setTimeout(sendHeight, 1500);
+    // Catch images that finish later.
+    document.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) img.addEventListener('load', function () {
+        setTimeout(send, 50);
+      });
+    });
+    // Re-measure on viewport resize (orientation changes etc.) — debounced.
+    var rTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(rTimer);
+      rTimer = setTimeout(send, 200);
+    });
   })();
 </script>
  
