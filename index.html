@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Rare Founders × Silverstone — Private BTCC Weekend</title>
 <meta name="description" content="An invite-only BTCC weekend at Silverstone. 30 guests. Behind-the-scenes access you can't buy." />
- 
+
 <meta property="og:title" content="Rare Founders × Silverstone — Private BTCC Weekend" />
 <meta property="og:description" content="30 guests. Invite only. Access you can't buy." />
 <meta property="og:type" content="website" />
- 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Mulish:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
- 
+
 <style>
   /* ============ TOKENS ============ */
   :root {
@@ -30,7 +30,7 @@
     --pad-x:     clamp(20px, 4vw, 64px);
     --ease:      cubic-bezier(.22,.61,.36,1);
   }
- 
+
   *,*::before,*::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   html { background: var(--bg); -webkit-font-smoothing: antialiased; }
@@ -44,10 +44,10 @@
     overflow-x: hidden;
   }
   ::selection { background: var(--pink); color: #fff; }
- 
+
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
- 
+
   h1, h2, h3 {
     font-family: 'Archivo Black', 'Impact', sans-serif;
     font-weight: 400;
@@ -57,14 +57,14 @@
     color: var(--ink);
     text-transform: uppercase;
   }
- 
+
   .container {
     max-width: var(--max);
     margin: 0 auto;
     padding-left: var(--pad-x);
     padding-right: var(--pad-x);
   }
- 
+
   /* helpers */
   .eyebrow {
     font-family: 'Mulish', sans-serif;
@@ -80,7 +80,7 @@
     width: 6px; height: 6px; background: var(--pink); border-radius: 50%;
     box-shadow: 0 0 14px var(--pink);
   }
- 
+
   .ix {
     font-family: 'Mulish', sans-serif;
     font-weight: 700;
@@ -88,7 +88,7 @@
     font-size: 13px;
     letter-spacing: 0.18em;
   }
- 
+
   /* ============ NAV ============ */
   .nav {
     position: sticky; top: 0; z-index: 60;
@@ -119,7 +119,7 @@
   }
   .nav-cta:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
   .nav-cta .arrow { width: 14px; height: 9px; }
- 
+
   /* ============ HERO ============ */
   .hero {
     position: relative;
@@ -135,7 +135,7 @@
   @media (max-width: 700px) {
     html.is-embedded .hero { min-height: 640px; }
   }
- 
+
   /* centered brand atop the hero (in flow, above the pill) */
   .hero-brand {
     display: flex;
@@ -187,7 +187,7 @@
     z-index: 1;
   }
   .hero .container { position: relative; z-index: 2; width: 100%; }
- 
+
   .hero-pill {
     display: inline-flex; align-items: center; gap: 12px;
     font-family: 'Mulish', sans-serif;
@@ -207,7 +207,7 @@
     0%, 100% { opacity: 1; }
     50%      { opacity: 0.45; }
   }
- 
+
   .hero h1 {
     font-size: clamp(40px, 9.4vw, 144px);
     line-height: 0.92;
@@ -225,7 +225,7 @@
   @media (max-width: 360px) {
     .hero h1 { font-size: 30px; }
   }
- 
+
   .hero-sub {
     color: rgba(255,255,255,0.78);
     font-size: clamp(17px, 1.3vw, 19px);
@@ -234,7 +234,7 @@
     font-weight: 400;
     margin: 0 0 44px;
   }
- 
+
   /* primary CTA — premium, restrained */
   .cta {
     display: inline-flex; align-items: center; gap: 16px;
@@ -261,9 +261,9 @@
     border: 1px solid var(--line-2);
   }
   .cta-ghost:hover { border-color: var(--pink); color: var(--pink); background: transparent; transform: translateY(-1px); }
- 
+
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
- 
+
   .hero-meta {
     margin-top: 56px;
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
@@ -285,21 +285,28 @@
   @media (max-width: 700px) {
     .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }
   }
- 
+
   /* ============ SECTION SCAFFOLD ============ */
   section { padding: clamp(88px, 10vw, 140px) 0; position: relative; }
   .section-head {
     margin: 0 0 64px;
     max-width: 64ch;
   }
-  .section-head h2 {
-    font-size: clamp(40px, 6.4vw, 96px);
+  .section-head h2,
+  .what-copy h2,
+  .who-copy h2,
+  .apply h2 {
+    font-size: clamp(36px, 6vw, 84px);
     line-height: 0.96;
-    margin: 0;
     letter-spacing: -0.02em;
+    margin: 18px 0 28px;
+    max-width: 18ch;
   }
-  .section-head h2 .slash { color: var(--pink); }
- 
+  .section-head h2 .slash,
+  .what-copy h2 .slash,
+  .who-copy h2 .slash,
+  .apply h2 .slash { color: var(--pink); }
+
   /* ============ WHAT IT IS ============ */
   .what {
     border-top: 1px solid var(--line);
@@ -310,11 +317,7 @@
     gap: 80px;
     align-items: center;
   }
-  .what-copy h2 {
-    font-size: clamp(34px, 5.4vw, 76px);
-    margin: 18px 0 28px;
-  }
-  .what-copy h2 .slash { color: var(--pink); }
+  /* .what-copy h2 — sizing handled by unified rule above */
   .what-copy p {
     color: var(--ink-soft);
     font-size: clamp(17px, 1.2vw, 19px);
@@ -348,7 +351,7 @@
     .what-grid { grid-template-columns: 1fr; gap: 40px; }
     .what-image { aspect-ratio: 4 / 3; }
   }
- 
+
   /* ============ INCLUDED — editorial rows ============ */
   .included { border-top: 1px solid var(--line); }
   .inc-list {
@@ -391,7 +394,7 @@
     .inc-row .thumb { aspect-ratio: 16 / 9; max-width: 100%; }
     .inc-row .body { grid-template-columns: 1fr; gap: 8px; }
   }
- 
+
   /* ============ STRIP — cinematic image row ============ */
   .strip {
     padding: 0;
@@ -428,7 +431,7 @@
     .strip-row { grid-template-columns: 1fr; }
     .strip-row .pane { aspect-ratio: 16 / 10; border-right: 0; border-bottom: 1px solid var(--line); }
   }
- 
+
   /* ============ WHO IT'S FOR ============ */
   .who { border-top: 1px solid var(--line); }
   .who-grid {
@@ -437,11 +440,7 @@
     gap: 80px;
     align-items: end;
   }
-  .who-copy h2 {
-    font-size: clamp(40px, 6vw, 88px);
-    margin: 18px 0 24px;
-  }
-  .who-copy h2 .slash { color: var(--pink); }
+  /* .who-copy h2 — sizing handled by unified rule above */
   .who-copy p {
     color: var(--ink-soft);
     font-size: clamp(17px, 1.2vw, 19px);
@@ -475,7 +474,7 @@
   @media (max-width: 980px) {
     .who-grid { grid-template-columns: 1fr; gap: 32px; }
   }
- 
+
   /* ============ WHY ============ */
   .why { border-top: 1px solid var(--line); }
   .why-grid {
@@ -516,7 +515,7 @@
   @media (max-width: 880px) {
     .why-grid { grid-template-columns: 1fr; }
   }
- 
+
   /* ============ APPLY (no embedded form) ============ */
   .apply {
     border-top: 1px solid var(--line);
@@ -536,14 +535,7 @@
     z-index: 0;
   }
   .apply .container { position: relative; z-index: 1; }
-  .apply h2 {
-    font-size: clamp(56px, 9vw, 144px);
-    line-height: 0.94;
-    margin: 18px 0 24px;
-    max-width: 14ch;
-    letter-spacing: -0.02em;
-  }
-  .apply h2 .slash { color: var(--pink); }
+  /* .apply h2 — sizing handled by unified rule above */
   .apply p.lead {
     color: rgba(255,255,255,0.82);
     font-size: clamp(17px, 1.3vw, 20px);
@@ -579,7 +571,7 @@
   @media (max-width: 800px) {
     .mantra { grid-template-columns: 1fr; gap: 14px; }
   }
- 
+
   /* ============ FOOTER ============ */
   footer {
     background: #000;
@@ -597,7 +589,7 @@
   .foot img { height: 22px; opacity: 0.95; }
   .foot a:hover { color: var(--ink); }
   .foot-left { display: flex; align-items: center; gap: 16px; }
- 
+
   /* reduce motion */
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -605,11 +597,11 @@
 </style>
 </head>
 <body>
- 
+
 <!-- ============ NAV ============ -->
 <!-- nav removed; brand moved into hero -->
- 
- 
+
+
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="hero-photo" aria-hidden="true"></div>
@@ -619,21 +611,21 @@
       <span class="slash">/</span>
       <span class="silver">Silverstone</span>
     </div>
- 
+
     <span class="hero-pill"><i class="dot"></i>Invite-only · BTCC · Silverstone · 26–27 September 2026</span>
- 
+
     <h1>Inside<br>British<br>Motorsport<span class="slash">.</span></h1>
- 
+
     <p class="hero-sub">A private weekend at Silverstone for thirty hand-picked guests. Race-day access, the paddock, the garages, the team principals — and the kind of room you only get into by being asked.</p>
- 
+
     <div class="hero-actions">
       <a href="https://forms.clickup.com/90151333967/f/2kyq0c2f-11695/WBFG7WZDO3Z0CV6QEX" target="_blank" rel="noopener" class="cta">
         Register Your Interest
         <span class="arrow"></span>
       </a>
-      <a href="#what" class="cta cta-ghost">What's Included</a>
+      <a href="#included" class="cta cta-ghost">What's Included</a>
     </div>
- 
+
     <dl class="hero-meta">
       <div><dt>Where</dt><dd>Silverstone</dd></div>
       <div><dt>When</dt><dd>26–27 Sept '26</dd></div>
@@ -642,7 +634,7 @@
     </dl>
   </div>
 </section>
- 
+
 <!-- ============ WHAT IT IS ============ -->
 <section class="what" id="what">
   <div class="container">
@@ -660,7 +652,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- ============ WHAT'S INCLUDED — editorial rows ============ -->
 <section class="included" id="included">
   <div class="container">
@@ -668,7 +660,7 @@
       <p class="eyebrow"><span class="dot"></span>What's included</p>
       <h2>Everything in the day<span class="slash">.</span></h2>
     </div>
- 
+
     <div class="inc-list">
       <article class="inc-row">
         <span class="ix">/ 01</span>
@@ -678,7 +670,7 @@
           <p>Premium hosting throughout BTCC weekend at Silverstone. Hospitality included.</p>
         </div>
       </article>
- 
+
       <article class="inc-row">
         <span class="ix">/ 02</span>
         <figure class="thumb"><img src="btcc-01.jpg" alt="Hospitality marquee" /></figure>
@@ -687,7 +679,7 @@
           <p>A dedicated Rare Founders environment. Built for considered conversation.</p>
         </div>
       </article>
- 
+
       <article class="inc-row">
         <span class="ix">/ 03</span>
         <figure class="thumb"><img src="btcc-03.jpg" alt="Pit lane" /></figure>
@@ -696,7 +688,7 @@
           <p>Behind-the-scenes access into rooms typically closed to the public.</p>
         </div>
       </article>
- 
+
       <article class="inc-row">
         <span class="ix">/ 04</span>
         <figure class="thumb"><img src="btcc-04.jpg" alt="Team and drivers" /></figure>
@@ -705,7 +697,7 @@
           <p>Time with the people who actually run the championship.</p>
         </div>
       </article>
- 
+
       <article class="inc-row">
         <span class="ix">/ 05</span>
         <figure class="thumb"><img src="btcc-05.jpg" alt="Trackside broadcast" /></figure>
@@ -717,7 +709,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- ============ STRIP — cinematic ============ -->
 <section class="strip" aria-hidden="true">
   <div class="strip-row">
@@ -735,7 +727,7 @@
     </figure>
   </div>
 </section>
- 
+
 <!-- ============ WHO IT'S FOR ============ -->
 <section class="who" id="who">
   <div class="container">
@@ -755,7 +747,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- ============ WHY JOIN ============ -->
 <section class="why" id="why">
   <div class="container">
@@ -763,26 +755,26 @@
       <p class="eyebrow"><span class="dot"></span>Why join</p>
       <h2>Most race hospitality<br>can be bought<span class="slash">.</span><br>This cannot.</h2>
     </div>
- 
+
     <div class="why-grid">
       <article class="why-card">
         <div class="why-num">01</div>
         <h3>Access you can't buy</h3>
         <p>Paddock, garage, sponsor hospitality, team principals — relationship-led, not for sale at any price.</p>
       </article>
- 
+
       <article class="why-card">
         <div class="why-num">02</div>
         <h3>The right thirty</h3>
         <p>A curated room of family offices, fund GPs and senior executives. Every seat considered.</p>
       </article>
- 
+
       <article class="why-card">
         <div class="why-num">03</div>
         <h3>Behind the championship</h3>
         <p>Meet drivers, team principals and commercial partners. See how a championship actually runs.</p>
       </article>
- 
+
       <article class="why-card">
         <div class="why-num">04</div>
         <h3>Peers at your level</h3>
@@ -791,7 +783,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- ============ APPLY (link-out CTA, no embedded form) ============ -->
 <section class="apply" id="apply">
   <div class="apply-bg" aria-hidden="true"></div>
@@ -799,14 +791,14 @@
     <p class="eyebrow"><span class="dot"></span>Register Interest</p>
     <h2>Thirty places<span class="slash">.</span><br>Invite only.</h2>
     <p class="lead">Registering interest does not guarantee a place. Guests are selected for fit, relevance and value to the room and our team partners.</p>
- 
+
     <div class="actions">
       <a href="https://forms.clickup.com/90151333967/f/2kyq0c2f-11695/WBFG7WZDO3Z0CV6QEX" target="_blank" rel="noopener" class="cta">
         Apply to Join
         <span class="arrow"></span>
       </a>
     </div>
- 
+
     <div class="mantra" aria-hidden="true">
       <div class="m">
         <span class="lbl">/ 01</span>
@@ -823,9 +815,9 @@
     </div>
   </div>
 </section>
- 
+
 <!-- footer removed -->
- 
+
 <script>
   // Anchor scroll — when standalone, scroll the page; when embedded in an
   // iframe (Squarespace), tell the parent where to scroll instead (the
@@ -847,7 +839,7 @@
     });
   });
 </script>
- 
+
 <!-- When loaded inside an iframe (e.g. embedded in Squarespace), tell the
      parent our true content height so the iframe can auto-size and the
      outer page scroll naturally reaches the footer. -->
@@ -856,7 +848,7 @@
     if (window.parent === window) return; // not embedded
     // Mark <html> so embed-only CSS overrides (e.g. hero height) take effect.
     document.documentElement.classList.add('is-embedded');
- 
+
     var lastSent = 0;
     function measure() {
       // Use body.scrollHeight (more stable than documentElement)
@@ -894,6 +886,6 @@
     });
   })();
 </script>
- 
+
 </body>
 </html>
