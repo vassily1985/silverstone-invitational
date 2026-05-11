@@ -119,25 +119,6 @@
   }
   .nav-cta:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
   .nav-cta .arrow { width: 14px; height: 9px; }
-  .nav-cta { white-space: nowrap; }
- 
-  /* ===== mobile nav ===== */
-  @media (max-width: 640px) {
-    .nav-inner { height: 60px; }
-    .brand img { height: 22px; }
-    .brand .x, .brand .silver { font-size: 15px; }
-    .brand { gap: 8px; }
-    .nav-cta {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      padding: 9px 12px;
-      gap: 8px;
-    }
-    .nav-cta .arrow { width: 12px; height: 8px; }
-  }
-  @media (max-width: 420px) {
-    .brand .silver { display: none; }
-  }
  
   /* ============ HERO ============ */
   .hero {
@@ -145,8 +126,44 @@
     min-height: 100vh;
     display: flex; align-items: flex-end;
     overflow: hidden;
-    padding: 120px 0 64px;
+    padding: 56px 0 64px;
     background: var(--bg);
+  }
+ 
+  /* centered brand atop the hero image */
+  .hero-brand {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--ink);
+  }
+  .hero-brand img {
+    height: 38px;
+    width: auto;
+    opacity: 0.98;
+  }
+  .hero-brand .slash {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    color: var(--pink);
+    line-height: 1;
+  }
+  .hero-brand .silver {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  @media (max-width: 640px) {
+    .hero-brand { top: 28px; gap: 12px; }
+    .hero-brand img { height: 28px; }
+    .hero-brand .slash, .hero-brand .silver { font-size: 18px; }
   }
   .hero-photo {
     position: absolute; inset: 0;
@@ -578,26 +595,19 @@
 <body>
  
 <!-- ============ NAV ============ -->
-<header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="/" aria-label="Rare Founders × Silverstone">
-      <img src="rf-logo-white.png" alt="Rare Founders" />
-      <span class="x">/</span>
-      <span class="silver">Silverstone</span>
-    </a>
-    <a href="https://forms.clickup.com/90151333967/f/2kyq0c2f-11695/WBFG7WZDO3Z0CV6QEX" target="_blank" rel="noopener" class="nav-cta">
-      Join the Waitlist
-      <svg class="arrow" viewBox="0 0 16 10" fill="none" aria-hidden="true">
-        <path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </div>
-</header>
+<!-- nav removed; brand moved into hero -->
+ 
  
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="hero-photo" aria-hidden="true"></div>
   <div class="container">
+    <div class="hero-brand" aria-label="Rare Founders × Silverstone">
+      <img src="rf-logo-white.png" alt="Rare Founders" />
+      <span class="slash">/</span>
+      <span class="silver">Silverstone</span>
+    </div>
+ 
     <span class="hero-pill"><i class="dot"></i>Invite-only · BTCC · Silverstone · 26–27 September 2026</span>
  
     <h1>Inside<br>British<br>Motorsport<span class="slash">.</span></h1>
@@ -823,6 +833,34 @@
       }
     });
   });
+</script>
+ 
+<!-- Tell the parent (Squarespace) our true height so the iframe can auto-size
+     and the outer page scroll naturally reaches the footer. -->
+<script>
+  (function () {
+    if (window.parent === window) return; // not embedded
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      window.parent.postMessage({ type: 'silverstone-height', height: h }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    // Re-send when images finish loading (they change the height)
+    document.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) img.addEventListener('load', sendHeight);
+    });
+    // And watch for any DOM size changes
+    if (window.ResizeObserver) {
+      new ResizeObserver(sendHeight).observe(document.documentElement);
+    }
+    // Initial ping after a small delay (covers fonts/CSS late loads)
+    setTimeout(sendHeight, 400);
+    setTimeout(sendHeight, 1500);
+  })();
 </script>
  
 </body>
